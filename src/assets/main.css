@@ -1,0 +1,65 @@
+@import './base.css';
+
+@font-face {
+  font-family: 'DINPro';
+  src: url('/fonts/DINPro.ttf');
+}
+
+@font-face {
+  font-family: 'EchoRevival';
+  src: url('/fonts/19180.otf');
+}
+
+#app {
+  font-family: DINPro, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(236, 247, 90, 0.404);
+  /* background-image: url('/img/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.fill {
+  width: 100%;
+  height: 100%;
+}
+
+.base-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
