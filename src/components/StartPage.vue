@@ -40,7 +40,7 @@ function handleStartClick() {
   padding: 2%;
 }
 .start-page__button {
-  font-family: EchoRevival, serif;
+  font-family: DINpro, serif;
   margin-top: 4%;
   font-size: 300%;
   color: #d51212;

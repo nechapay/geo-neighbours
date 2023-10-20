@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue'
+import QuestionViewer from './QuestionViewer.vue'
 const neighbours = [
   {
     id: 'usa',
@@ -33,12 +35,58 @@ const neighbours = [
     ]
   }
 ]
+const teams = ref([
+  {
+    id: 1,
+    name: 'Команда 1',
+    score: 0
+  },
+  {
+    id: 1,
+    name: 'Команда 2',
+    score: 0
+  },
+  {
+    id: 1,
+    name: 'Команда 3',
+    score: 0
+  },
+  {
+    id: 1,
+    name: 'Команда 4',
+    score: 0
+  }
+])
+
+let dialogVisible = ref(false)
+let index = ref(0)
+
+function handleUpdateScore(team, idx) {
+  console.log(idx)
+  console.log('update score', teams.value[team].name, neighbours[index.value].questions[idx].score)
+  teams.value[team].score += neighbours[index.value].questions[idx].score
+}
 </script>
 <template>
-  <div class="main-container my-grid fill">
-    <div class="map-container base-flex"></div>
-    <div class="score-container"></div>
-    <div class="controls-container"></div>
+  <div class="fill">
+    <Transition name="bounce">
+      <QuestionViewer
+        v-if="dialogVisible"
+        @close="dialogVisible = false"
+        :question="neighbours[index]"
+        :teams="teams"
+        @updateScore="handleUpdateScore"
+      />
+    </Transition>
+    <div class="main-container my-grid fill">
+      <div class="map-container base-flex"></div>
+      <div class="score-container">
+        <div v-for="team in teams" :key="team.id">{{ team.name }}:{{ team.score }}</div>
+      </div>
+      <div class="controls-container">
+        <button class="my-button start-button" @click="dialogVisible = true">?</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -57,18 +105,21 @@ const neighbours = [
 .map-container {
   grid-column: 1;
   grid-row: 1;
-  background: blue;
 }
 
 .score-container {
   grid-column: 2;
   grid-row: 1;
-  background: green;
 }
 
 .controls-container {
   grid-column: 1/3;
   grid-row: 2;
-  background: red;
+}
+
+.start-button {
+  border-radius: 50%;
+  height: 120px;
+  font-size: 5rem;
 }
 </style>

@@ -63,3 +63,46 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.my-button {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #fb9d23;
+  background: white;
+  font-size: 150%;
+  transition-duration: 0.5s;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 3px 3px 3px grey;
+  min-width: 125px;
+  padding: 8px 0;
+  margin: 4px;
+}
+
+.my-button:hover {
+  background: #fb9d23;
+  color: white;
+  box-shadow: none;
+}
