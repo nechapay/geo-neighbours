@@ -1,6 +1,9 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import QuestionViewer from './QuestionViewer.vue'
+import RFMap from './RFMap.vue'
+import gsap from 'gsap'
+
 const neighbours = [
   {
     id: 'usa',
@@ -58,14 +61,69 @@ const teams = ref([
   }
 ])
 
+const animatedScore1 = reactive({
+  number: 0
+})
+
+const score1 = ref(0)
+
+const animatedScore2 = reactive({
+  number: 0
+})
+
+const score2 = ref(0)
+
+const animatedScore3 = reactive({
+  number: 0
+})
+
+const score3 = ref(0)
+
+const animatedScore4 = reactive({
+  number: 0
+})
+
+const score4 = ref(0)
+
 let dialogVisible = ref(false)
 let index = ref(0)
 
 function handleUpdateScore(team, idx) {
-  console.log(idx)
-  console.log('update score', teams.value[team].name, neighbours[index.value].questions[idx].score)
   teams.value[team].score += neighbours[index.value].questions[idx].score
+  switch (idx) {
+    case 0:
+      score1.value = neighbours[index.value].questions[idx].score
+      break
+    case 1:
+      score2.value = neighbours[index.value].questions[idx].score
+      break
+    case 2:
+      score3.value = neighbours[index.value].questions[idx].score
+      break
+    case 3:
+      score4.value = neighbours[index.value].questions[idx].score
+      break
+    default:
+      break
+  }
 }
+
+watch(score1, (n, o) => {
+  console.log(JSON.stringify(n), JSON.stringify(o))
+  gsap.to(animatedScore1, { duration: 0.5, number: Number(n) || 0 })
+})
+watch(score2, (n, o) => {
+  console.log(JSON.stringify(n), JSON.stringify(o))
+  gsap.to(animatedScore2, { duration: 0.5, number: Number(n) || 0 })
+})
+watch(score3, (n, o) => {
+  console.log(JSON.stringify(n), JSON.stringify(o))
+  gsap.to(animatedScore3, { duration: 0.5, number: Number(n) || 0 })
+})
+watch(score4, (n, o) => {
+  console.log(JSON.stringify(n), JSON.stringify(o))
+  gsap.to(animatedScore4, { duration: 0.5, number: Number(n) || 0 })
+})
 </script>
 <template>
   <div class="fill">
@@ -79,10 +137,28 @@ function handleUpdateScore(team, idx) {
       />
     </Transition>
     <div class="main-container my-grid fill">
-      <div class="map-container base-flex"></div>
-      <div class="score-container">
-        <div v-for="team in teams" :key="team.id">{{ team.name }}:{{ team.score }}</div>
+      <div class="map-container fill base-flex">
+        <RFMap />
       </div>
+      <div class="score-container">
+        <div class="score-line">
+          <span>{{ teams[0].name }}</span
+          >:<span>{{ animatedScore1.number.toFixed(0) }}</span>
+        </div>
+        <div class="score-line">
+          <span>{{ teams[1].name }}</span
+          >:<span>{{ animatedScore2.number.toFixed(0) }}</span>
+        </div>
+        <div class="score-line">
+          <span>{{ teams[2].name }}</span
+          >:<span>{{ animatedScore3.number.toFixed(0) }}</span>
+        </div>
+        <div class="score-line">
+          <span>{{ teams[3].name }}</span
+          >:<span>{{ animatedScore4.number.toFixed(0) }}</span>
+        </div>
+      </div>
+      <div class="legend-container"></div>
       <div class="controls-container">
         <button class="my-button start-button" @click="dialogVisible = true">?</button>
       </div>
@@ -112,8 +188,13 @@ function handleUpdateScore(team, idx) {
   grid-row: 1;
 }
 
+.legend-container {
+  grid-column: 1;
+  grid-row: 2;
+}
+
 .controls-container {
-  grid-column: 1/3;
+  grid-column: 2;
   grid-row: 2;
 }
 

@@ -106,3 +106,24 @@
   color: white;
   box-shadow: none;
 }
+
+.region {
+  fill: white;
+  fill-opacity: 1;
+  stroke: #000;
+  stroke-width: 1;
+}
+
+.region:hover {
+  cursor: pointer;
+  fill: #afa;
+  stroke: #faa;
+  stroke-width: 4;
+}
+
+.sea {
+  fill: #c7eafb;
+  fill-opacity: 1;
+  stroke: #000;
+  stroke-width: 0.5;
+}
