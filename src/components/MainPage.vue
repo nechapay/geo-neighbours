@@ -90,18 +90,18 @@ let index = ref(0)
 
 function handleUpdateScore(team, idx) {
   teams.value[team].score += neighbours[index.value].questions[idx].score
-  switch (idx) {
+  switch (team) {
     case 0:
-      score1.value = neighbours[index.value].questions[idx].score
+      score1.value += neighbours[index.value].questions[idx].score
       break
     case 1:
-      score2.value = neighbours[index.value].questions[idx].score
+      score2.value += neighbours[index.value].questions[idx].score
       break
     case 2:
-      score3.value = neighbours[index.value].questions[idx].score
+      score3.value += neighbours[index.value].questions[idx].score
       break
     case 3:
-      score4.value = neighbours[index.value].questions[idx].score
+      score4.value += neighbours[index.value].questions[idx].score
       break
     default:
       break
@@ -158,7 +158,6 @@ watch(score4, (n, o) => {
           >:<span>{{ animatedScore4.number.toFixed(0) }}</span>
         </div>
       </div>
-      <div class="legend-container"></div>
       <div class="controls-container">
         <button class="my-button start-button" @click="dialogVisible = true">?</button>
       </div>
@@ -180,17 +179,12 @@ watch(score4, (n, o) => {
 
 .map-container {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 1/3;
 }
 
 .score-container {
   grid-column: 2;
   grid-row: 1;
-}
-
-.legend-container {
-  grid-column: 1;
-  grid-row: 2;
 }
 
 .controls-container {

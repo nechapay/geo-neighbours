@@ -41,7 +41,7 @@ function handleNext() {
   <div class="dialog-wrapper fill base-flex flex-column">
     <div class="dialog-body base-flex flex-column">
       <h2 class="dialog-title base-flex">{{ question.title }}</h2>
-      <div class="dialog-text">{{ displayedText }}</div>
+      <div class="dialog-text base-flex">{{ displayedText }}</div>
 
       <div class="dialog-controls base-flex flex-column">
         <div class="switch-container base-flex">
@@ -93,10 +93,13 @@ function handleNext() {
   height: 60%;
   border-bottom: 1px solid #fb9d23;
   font-size: 150%;
+  width: 100%;
+  overflow-y: auto;
 }
 
 .dialog-controls {
   height: 30%;
   justify-content: space-between;
+  min-width: 100%;
 }
 </style>

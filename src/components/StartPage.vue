@@ -7,7 +7,7 @@ function handleStartClick() {
 <template>
   <div class="title-screen fill">
     <div class="title">Геополитическое положение России</div>
-    <a @click="handleStartClick" class="start-page__button">Начать</a>
+    <a @click="handleStartClick" class="my-button start-page__button">Начать</a>
   </div>
 </template>
 
@@ -23,10 +23,6 @@ function handleStartClick() {
   font-size: 300%;
   color: #d51212;
   margin: 4%;
-  background: white;
-  padding: 1% 2%;
-  border-radius: 1rem;
-  box-shadow: 5px 5px 5px #242222c2;
 }
 
 .title-screen p {
@@ -43,15 +39,6 @@ function handleStartClick() {
   font-family: DINpro, serif;
   margin-top: 4%;
   font-size: 300%;
-  color: #d51212;
-  background: white;
-  padding: 1% 2%;
-  border-radius: 1rem;
-  box-shadow: 5px 5px 5px #242222c2;
-}
-
-.start-page__button:hover {
-  cursor: pointer;
-  color: rgb(28, 118, 7);
+  padding: 8px 24px;
 }
 </style>
