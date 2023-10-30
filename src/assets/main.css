@@ -127,3 +127,25 @@
   stroke: #000;
   stroke-width: 0.5;
 }
+
+.state-border {
+  fill: none;
+  stroke: #a9a3a1;
+  stroke-width: 4;
+  stroke-linejoin: bevel;
+  stroke-dasharray: 3.9918;
+}
+
+.geo-lines {
+  fill: none;
+  stroke: #00aeef;
+  stroke-miterlimit: 10;
+}
+
+.map-frame {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

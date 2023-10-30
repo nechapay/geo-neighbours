@@ -167,7 +167,7 @@ watch(score4, (n, o) => {
 
 <style scoped>
 .main-container {
-  background: rgba(99, 35, 35, 0.493);
+  /* background: rgba(99, 35, 35, 0.493); */
   padding: 1% 1% 1.5% 1%;
 }
 .my-grid {
