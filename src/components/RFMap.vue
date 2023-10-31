@@ -1,6 +1,8 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import * as d3 from 'd3'
+
+const props = defineProps(['actions'])
 
 const svg = ref(null)
 let VIEWBOX = ''
@@ -2911,6 +2913,16 @@ const shapes = {
   }
   */
 }
+
+watch(
+  () => props.actions,
+  (n) => {
+    for (const item of Object.keys(n)) {
+      d3.select('#' + item).classed(n[item].class.value, n[item].class.enabled)
+    }
+  },
+  { deep: true }
+)
 </script>
 <template>
   <div class="svg-container fill"></div>

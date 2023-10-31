@@ -10,6 +10,11 @@
   src: url('/fonts/19180.otf');
 }
 
+@font-face {
+  font-family: "stsev851-78";
+  src: url("/fonts/stsev851-78.ttf")
+}
+
 #app {
   font-family: DINPro, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,7 +96,7 @@
   border-style: solid;
   border-color: #fb9d23;
   background: white;
-  font-size: 150%;
+  font-size: 100%;
   transition-duration: 0.5s;
   cursor: pointer;
   outline: none;
@@ -112,14 +117,27 @@
   fill-opacity: 1;
   stroke: #000;
   stroke-width: 0.5;
+  transition-duration: 1s;
 }
 
-.region:hover {
+.region.red {
+  fill: red;
+}
+
+.region.green {
+  fill: green;
+}
+
+.region.blue {
+  fill: blue;
+}
+
+/* .region:hover {
   cursor: pointer;
   fill: #afa;
   stroke: #faa;
   stroke-width: 4;
-}
+} */
 
 .sea {
   fill: #c7eafb;

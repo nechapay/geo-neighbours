@@ -16,6 +16,9 @@ function handleStartClick() {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3)), url('/img/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .title {

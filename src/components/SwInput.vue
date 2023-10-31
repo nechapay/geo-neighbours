@@ -27,14 +27,14 @@ const model = computed({
 
 <style scoped>
 .switch-container {
-  margin-right: 20px;
+  margin-right: 2vh;
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 6vh;
+  height: 3.4vh;
 }
 
 .switch input {
@@ -58,10 +58,10 @@ const model = computed({
 .slider:before {
   position: absolute;
   content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 2.6vh;
+  width: 2.6vh;
+  left: 0.4vh;
+  bottom: 0.4vh;
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -76,13 +76,13 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(2.6vh);
+  -ms-transform: translateX(2.6vh);
+  transform: translateX(2.6vh);
 }
 
 .slider.round {
-  border-radius: 34px;
+  border-radius: 3.4vh;
 }
 
 .slider.round:before {
@@ -90,6 +90,6 @@ input:checked + .slider:before {
 }
 
 .switch-label {
-  font-size: 1.2em;
+  font-size: 100%;
 }
 </style>
