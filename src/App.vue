@@ -15,7 +15,6 @@ function handleStarted() {
 const winners = ref([])
 
 function handleEnded(val) {
-  console.log('ended', val)
   winners.value = val
   ended.value = true
 }

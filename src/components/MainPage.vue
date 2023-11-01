@@ -545,10 +545,6 @@ function finality() {
   emits('ended', result)
 }
 
-watch(finished, (n, o) => {
-  console.log('finished', n, o)
-})
-
 function handleQuestionClick() {
   if (!finished.value) dialogVisible.value = true
   else finality()
