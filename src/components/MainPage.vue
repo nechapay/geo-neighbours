@@ -1,8 +1,11 @@
 <script setup>
-import { ref, reactive, watch } from 'vue'
+import { computed, ref, reactive, watch } from 'vue'
 import QuestionViewer from './QuestionViewer.vue'
+import SettingsDialog from './SettingsDialog.vue'
 import RFMap from './RFMap.vue'
 import gsap from 'gsap'
+
+const emits = defineEmits(['ended'])
 
 const neighbours = [
   {
@@ -365,17 +368,17 @@ const teams = ref([
     score: 0
   },
   {
-    id: 1,
+    id: 2,
     name: 'Команда 2',
     score: 0
   },
   {
-    id: 1,
+    id: 3,
     name: 'Команда 3',
     score: 0
   },
   {
-    id: 1,
+    id: 4,
     name: 'Команда 4',
     score: 0
   }
@@ -500,6 +503,7 @@ function handleUpdateScore(team, idx) {
       score4.value += neighbours[index.value].questions[idx].score
       break
     default:
+      console.log('team not found', team, idx)
       break
   }
 }
@@ -526,6 +530,39 @@ function handleDialogClose() {
   }
   dialogVisible.value = false
 }
+
+function finality() {
+  let max = teams.value[0].score
+  let result = []
+  for (let i = 1; i < teams.value.length; i++) {
+    if (teams.value[i].score > max) {
+      max = teams.value[i].score
+    }
+  }
+  for (const team of teams.value) {
+    if (team.score === max) result.push(team)
+  }
+  emits('ended', result)
+}
+
+watch(finished, (n, o) => {
+  console.log('finished', n, o)
+})
+
+function handleQuestionClick() {
+  if (!finished.value) dialogVisible.value = true
+  else finality()
+}
+
+let buttonName = computed(() => {
+  return finished.value ? '!' : '?'
+})
+
+const settingsVisible = ref(false)
+
+function handleSettingsClick() {
+  settingsVisible.value = true
+}
 </script>
 <template>
   <div class="fill">
@@ -538,32 +575,36 @@ function handleDialogClose() {
         @updateScore="handleUpdateScore"
       />
     </Transition>
+    <Transition name="bounce">
+      <SettingsDialog v-if="settingsVisible" @close="settingsVisible = false" :teams="teams" />
+    </Transition>
     <div class="main-container my-grid fill">
       <div class="map-container fill base-flex">
         <RFMap :actions="mapActions" />
       </div>
       <div class="score-container base-flex">
         <div class="score-line">
-          <span>{{ teams[0].name }}</span
-          >:<span>{{ animatedScore1.number.toFixed(0) }}</span>
+          <div class="score-name">{{ teams[0].name }}</div>
+          <div class="score-number">{{ animatedScore1.number.toFixed(0) }}</div>
         </div>
         <div class="score-line">
-          <span>{{ animatedScore2.number.toFixed(0) }}</span
-          >:<span>{{ teams[1].name }}</span>
+          <div class="score-name">{{ teams[1].name }}</div>
+          <div class="score-number">{{ animatedScore2.number.toFixed(0) }}</div>
         </div>
         <div class="score-line">
-          <span>{{ teams[2].name }}</span
-          >:<span>{{ animatedScore3.number.toFixed(0) }}</span>
+          <div class="score-name">{{ teams[2].name }}</div>
+          <div class="score-number">{{ animatedScore3.number.toFixed(0) }}</div>
         </div>
         <div class="score-line">
-          <span>{{ animatedScore4.number.toFixed(0) }}</span
-          >:<span>{{ teams[3].name }}</span>
+          <div class="score-name">{{ teams[3].name }}</div>
+          <div class="score-number">{{ animatedScore4.number.toFixed(0) }}</div>
         </div>
       </div>
     </div>
     <div class="controls-container">
-      <button v-show="!finished" class="my-button start-button" @click="dialogVisible = true">?</button>
+      <button class="my-button start-button" @click="handleQuestionClick" title="Вопрос">{{ buttonName }}</button>
     </div>
+    <button class="settings-button" title="Настройки" @click="handleSettingsClick">&#9881;</button>
   </div>
 </template>
 
@@ -571,6 +612,9 @@ function handleDialogClose() {
 .main-container {
   /* background: rgba(99, 35, 35, 0.493); */
   padding: 1% 1% 1.5% 1%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6)), url('/img/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .my-grid {
   display: grid;
@@ -589,12 +633,25 @@ function handleDialogClose() {
   font-weight: bold;
   grid-column: 1;
   grid-row: 1;
-  display: grid;
-  grid-template:
-    'score-line score-line'
-    'score-line score-line';
-  gap: 1%;
-  font-size: 200%;
+}
+
+.score-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 4px;
+  margin-right: 5%;
+}
+
+.score-name {
+  border-bottom: 1px solid black;
+  font-size: 120%;
+  width: 100%;
+}
+
+.score-number {
+  font-size: 300%;
 }
 
 .controls-container {
@@ -608,5 +665,15 @@ function handleDialogClose() {
   border-radius: 50%;
   height: 120px;
   font-size: 5rem;
+}
+.settings-button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 200%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 </style>

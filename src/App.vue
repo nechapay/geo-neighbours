@@ -11,13 +11,21 @@ let ended = ref(false)
 function handleStarted() {
   started.value = true
 }
+
+const winners = ref([])
+
+function handleEnded(val) {
+  console.log('ended', val)
+  winners.value = val
+  ended.value = true
+}
 </script>
 
 <template>
   <Transition name="fade" mode="out-in">
     <start-page v-if="!started && !ended" @started="handleStarted" />
-    <main-page v-else-if="started && !ended" @ended="ended = true" />
-    <end-page v-else-if="ended" />
+    <main-page v-else-if="started && !ended" @ended="handleEnded" />
+    <end-page v-else-if="ended" :winners="winners" />
   </Transition>
   <Copyright />
 </template>

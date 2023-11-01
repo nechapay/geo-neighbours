@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+const props = defineProps(['winners'])
+</script>
 
 <template>
   <div class="final-page fill">
-    <div class="final-page__header">Конец</div>
+    <div class="final-page__header">Поздравляем победителей!</div>
+    <div class="winners" v-for="item in winners" :key="item.id">{{ item.name }} набравшая {{ item.score }} очков</div>
     <audio :src="`./audio/fireworks.mp3`" autoplay loop></audio>
   </div>
 </template>
@@ -25,7 +28,7 @@
 }
 
 .final-page__header {
-  font-size: 300%;
+  font-size: 500%;
   margin-bottom: 10vmin;
   text-align: center;
 }
@@ -37,5 +40,9 @@
   font-size: 300%;
   margin-bottom: 3vmin;
   text-align: center;
+}
+
+.winners {
+  font-size: 300%;
 }
 </style>

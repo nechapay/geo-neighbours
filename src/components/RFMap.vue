@@ -10,20 +10,11 @@ onMounted(() => {
   drawMap()
 })
 
-function handleZoom() {}
-
 function drawMap() {
-  // function handleZoom(e) {
-  //   d3.select('#mainG').attr('transform', e.transform)
-  // }
-
-  // let zoom = d3.zoom().on('zoom', handleZoom).scaleExtent([1, 5])
-
   let el = document.querySelector('.svg-container')
   let width = el.offsetWidth
   let height = el.offsetHeight
-  // VIEWBOX = `0 0 ${width} ${height}`
-  // 0 0 5701 3143
+  svg.value = null
   VIEWBOX = `0 0 5701 3143`
   svg.value = d3
     .select('.svg-container')
@@ -32,11 +23,7 @@ function drawMap() {
     .attr('height', height)
     .attr('viewBox', VIEWBOX)
 
-  const svgDefs = svg.value.append('defs')
-  // let mainG = svg.value.append('g').attr('id', 'mainG')
-
-  // d3.select('#mainG').call(zoom)
-
+  // const svgDefs = svg.value.append('defs')
   svg.value
     .append('g')
     .attr('id', 'frame')
@@ -59,6 +46,7 @@ function drawMap() {
 
   for (const key of Object.keys(shapes)) {
     let g = svg.value.append('g').attr('class', shapes[key].class).attr('id', key)
+
     for (const d of shapes[key].path) {
       g.append('path').attr('d', d)
     }

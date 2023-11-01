@@ -6,7 +6,7 @@ function handleStartClick() {
 </script>
 <template>
   <div class="title-screen fill">
-    <div class="title">Геополитическое положение России</div>
+    <div class="title">{{ 'Геополитическое положение России'.toLocaleUpperCase() }}</div>
     <a @click="handleStartClick" class="my-button start-page__button">Начать</a>
   </div>
 </template>
@@ -23,9 +23,11 @@ function handleStartClick() {
 
 .title {
   font-family: DINpro, serif;
-  font-size: 300%;
+  font-size: 400%;
   color: #d51212;
-  margin: 4%;
+  margin: 10%;
+  font-weight: bolder;
+  text-shadow: 4px 4px 4px rgb(131, 35, 35);
 }
 
 .title-screen p {
