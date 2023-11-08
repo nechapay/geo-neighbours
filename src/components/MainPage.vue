@@ -389,73 +389,111 @@ const mapActions = ref({
     class: {
       value: 'red',
       enabled: false
-    }
+    },
+    info: {
+      name: 'США'
+    },
+    zoom: '0 0 5701 3143'
   },
   CN: {
     class: {
       value: 'blue',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Китай'
+    },
+    zoom: '0 0 5701 3143'
   },
   JP: {
     class: {
       value: 'red',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Япония'
+    },
+    zoom: '0 0 5701 3143'
   },
-  US: {
+  MN: {
     class: {
       value: 'red',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Монголия'
+    },
+    zoom: '0 0 5701 3143'
   },
   EE: {
     class: {
       value: 'red',
       enabled: false
-    }
-  },
-  MN: {
-    class: {
-      value: 'blue',
-      enabled: false
-    }
+    },
+    info: {
+      name: 'Эстония'
+    },
+    zoom: '0 0 5701 3143'
   },
   NO: {
     class: {
       value: 'red',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Норвегия'
+    },
+    zoom: '0 0 5701 3143'
   },
   KZ: {
     class: {
       value: 'blue',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Казахстан'
+    },
+    zoom: '0 0 5701 3143'
   },
   FI: {
     class: {
       value: 'red',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Финляндия'
+    },
+    zoom: '0 0 5701 3143'
   },
   KP: {
     class: {
       value: 'blue',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Северная корея'
+    },
+    zoom: '0 0 5701 3143'
   },
   AZ: {
     class: {
       value: 'blue',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Азербайджан'
+    },
+    zoom: '0 0 5701 3143'
   },
   BY: {
     class: {
       value: 'green',
       enabled: false
-    }
+    },
+    info: {
+      name: 'Белоруссия'
+    },
+    zoom: '0 0 5701 3143'
   }
 })
 
@@ -575,7 +613,7 @@ function handleSettingsClick() {
       <SettingsDialog v-if="settingsVisible" @close="settingsVisible = false" :teams="teams" />
     </Transition>
     <div class="main-container my-grid fill">
-      <div class="map-container fill base-flex">
+      <div class="map-container fill">
         <RFMap :actions="mapActions" />
       </div>
       <div class="score-container base-flex">
@@ -622,6 +660,10 @@ function handleSettingsClick() {
 .map-container {
   grid-column: 1;
   grid-row: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .score-container {

@@ -5,9 +5,10 @@ import * as d3 from 'd3'
 const props = defineProps(['actions'])
 
 const svg = ref(null)
-let VIEWBOX = ''
+const VIEWBOX = '0 0 5701 3143'
 onMounted(() => {
   drawMap()
+  console.log(props.actions)
 })
 
 function drawMap() {
@@ -15,7 +16,6 @@ function drawMap() {
   let width = el.offsetWidth
   let height = el.offsetHeight
   svg.value = null
-  VIEWBOX = `0 0 5701 3143`
   svg.value = d3
     .select('.svg-container')
     .append('svg')
@@ -2911,9 +2911,47 @@ watch(
   },
   { deep: true }
 )
+
+function clearHighlight() {
+  d3.selectAll('.region').classed('highlight', false)
+}
+
+function handleAction(val) {
+  clearHighlight()
+  d3.select('#' + val).classed('highlight', true)
+}
 </script>
 <template>
-  <div class="svg-container fill"></div>
+  <div class="svg-container"></div>
+  <div class="map-legend">
+    <template v-for="([key, value], index) in Object.entries(actions)" :key="index">
+      <a class="my-button legend-button" v-if="value.class.enabled" @click="handleAction(key)">
+        {{ value.info.name }}
+      </a>
+    </template>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.svg-container {
+  width: 80%;
+  height: 100%;
+}
+
+.svg-container svg {
+}
+
+.map-legend {
+  width: 20%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.legend-button {
+  font-size: 120%;
+  width: 50%;
+}
+</style>

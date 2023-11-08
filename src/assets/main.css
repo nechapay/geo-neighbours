@@ -11,8 +11,8 @@
 }
 
 @font-face {
-  font-family: "stsev851-78";
-  src: url("/fonts/stsev851-78.ttf")
+  font-family: 'stsev851-78';
+  src: url('/fonts/stsev851-78.ttf');
 }
 
 #app {
@@ -130,6 +130,12 @@
 
 .region.blue {
   fill: blue;
+}
+
+.region.highlight {
+  stroke: rgb(235, 195, 14);
+  stroke-width: 4;
+  fill: chartreuse;
 }
 
 /* .region:hover {
