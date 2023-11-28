@@ -27,9 +27,7 @@
   top: 0;
   left: 0;
   background: rgba(236, 247, 90, 0.404);
-  /* background-image: url('/img/bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover; */
+  user-select: none;
 }
 
 .fill {
