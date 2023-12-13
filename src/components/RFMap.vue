@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
+import StateInfo from './StateInfo.vue'
 import * as d3 from 'd3'
 
 const props = defineProps(['actions'])
@@ -8,8 +9,10 @@ const svg = ref(null)
 const VIEWBOX = '0 0 5701 3143'
 onMounted(() => {
   drawMap()
-  console.log(props.actions)
 })
+
+const state = ref({})
+const stateInfoVisible = ref(false)
 
 function drawMap() {
   let el = document.querySelector('.svg-container')
@@ -23,7 +26,17 @@ function drawMap() {
     .attr('height', height)
     .attr('viewBox', VIEWBOX)
 
-  // const svgDefs = svg.value.append('defs')
+  const svgDefs = svg.value.append('defs')
+
+  const mainGradient = svgDefs
+    .append('linearGradient')
+    .attr('id', 'russiaGradient')
+    .attr('gradientTransform', 'rotate(60)')
+
+  mainGradient.append('stop').attr('class', 'stop-left').attr('offset', '33%')
+  mainGradient.append('stop').attr('class', 'stop-center').attr('offset', '66%')
+  mainGradient.append('stop').attr('class', 'stop-right').attr('offset', '100%')
+
   svg.value
     .append('g')
     .attr('id', 'frame')
@@ -791,7 +804,7 @@ const shapes = {
     line: [],
     polyline: []
   },
-  ABH: {
+  ABK: {
     class: 'region',
     polygon: [],
     path: [
@@ -800,7 +813,7 @@ const shapes = {
     line: [],
     polyline: []
   },
-  SO: {
+  SU: {
     class: 'region',
     polygon: [],
     path: [],
@@ -2937,6 +2950,13 @@ function clearHighlight() {
 function handleAction(val) {
   clearHighlight()
   d3.select('#' + val).classed('highlight', true)
+  stateInfoVisible.value = true
+  state.value = props.actions[val].info
+}
+
+function handleClose() {
+  clearHighlight()
+  stateInfoVisible.value = false
 }
 </script>
 <template>
@@ -2947,6 +2967,9 @@ function handleAction(val) {
         {{ value.info.name }}
       </a>
     </template>
+    <Transition name="bounce">
+      <StateInfo :state="state" v-if="stateInfoVisible" @close="handleClose" />
+    </Transition>
   </div>
 </template>
 
@@ -2958,7 +2981,7 @@ function handleAction(val) {
 
 .map-legend {
   width: 20%;
-  height: 50%;
+  height: 58%;
   display: flex;
   flex-direction: column;
   align-items: stretch;

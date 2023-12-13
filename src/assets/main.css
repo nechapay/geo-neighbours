@@ -171,3 +171,117 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+.flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.usa {
+  background-image: url('/img/usa.png');
+  height: 20%;
+}
+
+.china {
+  background-image: url('/img/сhina.png');
+  height: 27%;
+}
+
+.japan {
+  background-image: url('/img/japan.png');
+  height: 27%;
+}
+
+.mongolia {
+  background-image: url('/img/mongolia.png');
+  height: 20.3%;
+}
+
+.estonia {
+  background-image: url('/img/estonia.png');
+  height: 26%;
+}
+
+.norway {
+  background-image: url('/img/norway.png');
+  height: 29.4%;
+}
+
+.kazakhstan {
+  background-image: url('/img/kazakhstan.png');
+  height: 20.3%;
+}
+
+.finland {
+  background-image: url('/img/finland.png');
+  height: 24.7%;
+}
+
+.north_korea {
+  background-image: url('/img/north_korea.png');
+  height: 20.3%;
+}
+
+.azerbaijan {
+  background-image: url('/img/azerbaijan.png');
+  height: 20.3%;
+}
+
+.belarus {
+  background-image: url('/img/belarus.png');
+  height: 20.3%;
+}
+
+.georgia {
+  background-image: url('/img/georgia.png');
+  height: 27%;
+}
+
+.poland {
+  background-image: url('/img/poland.png');
+  height: 25.3%;
+}
+
+.latvia {
+  background-image: url('/img/latvia.png');
+  height: 20.3%;
+}
+
+.south_ossetia {
+  background-image: url('/img/south_ossetia.png');
+  height: 20.3%;
+}
+
+.lithuania {
+  background-image: url('/img/lithuania.png');
+  height: 24.3%;
+}
+
+.abkhazia {
+  background-image: url('/img/abkhazia.png');
+  height: 20.3%;
+}
+
+.stop-left {
+  stop-color: blue;
+  stop-opacity: 0.5;
+}
+
+.stop-center {
+  stop-color: blue;
+  stop-opacity: 0.5;
+}
+
+.stop-right {
+  stop-color: blue;
+  stop-opacity: 0.5;
+}
+
+#RU {
+  fill: url(#russiaGradient);
+}
