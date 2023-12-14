@@ -33,6 +33,7 @@ function handleCloseClick() {
 }
 
 .dialog-body {
+  margin-top: 8%;
   background: white;
   height: 80%;
   width: 20%;
@@ -47,6 +48,7 @@ function handleCloseClick() {
 
 .dialog-body * {
   margin: 5px 0;
+  font-size: 90%;
 }
 
 .dialog-controls {
