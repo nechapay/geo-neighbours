@@ -37,6 +37,26 @@ function drawMap() {
   mainGradient.append('stop').attr('class', 'stop-center').attr('offset', '66%')
   mainGradient.append('stop').attr('class', 'stop-right').attr('offset', '100%')
 
+  const redGrad = svgDefs.append('linearGradient').attr('id', 'redGradient').attr('gradientTransform', 'rotate(60)')
+
+  redGrad.append('stop').attr('class', 'red-left').attr('offset', '50%')
+  redGrad.append('stop').attr('class', 'red-right').attr('offset', '100%')
+
+  const blueGrad = svgDefs.append('linearGradient').attr('id', 'blueGradient').attr('gradientTransform', 'rotate(60)')
+
+  blueGrad.append('stop').attr('class', 'blue-left').attr('offset', '50%')
+  blueGrad.append('stop').attr('class', 'blue-right').attr('offset', '100%')
+
+  const greenGrad = svgDefs.append('linearGradient').attr('id', 'greenGradient').attr('gradientTransform', 'rotate(60)')
+
+  greenGrad.append('stop').attr('class', 'green-left').attr('offset', '50%')
+  greenGrad.append('stop').attr('class', 'green-right').attr('offset', '100%')
+
+  const highlightGrad = svgDefs.append('linearGradient').attr('id', 'highlightGradient').attr('gradientTransform', 'rotate(60)')
+
+  highlightGrad.append('stop').attr('class', 'highlight-left').attr('offset', '50%')
+  highlightGrad.append('stop').attr('class', 'highlight-right').attr('offset', '100%')
+
   svg.value
     .append('g')
     .attr('id', 'frame')
@@ -2967,7 +2987,7 @@ function handleClose() {
         {{ value.info.name }}
       </a>
     </template>
-    <Transition name="bounce">
+    <Transition name="slide">
       <StateInfo :state="state" v-if="stateInfoVisible" @close="handleClose" />
     </Transition>
   </div>

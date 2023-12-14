@@ -89,6 +89,17 @@
   }
 }
 
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(20%);
+  opacity: 0;
+}
+
 .my-button {
   border-width: 1px;
   border-style: solid;
@@ -118,22 +129,62 @@
   transition-duration: 1s;
 }
 
+.red-left {
+  stop-color: red;
+  stop-opacity: 0.4;
+}
+
+.red-right {
+  stop-color: red;
+  stop-opacity: 0.7;
+}
+
+.green-left {
+  stop-color: green;
+  stop-opacity: 0.4;
+}
+
+.green-right {
+  stop-color: green;
+  stop-opacity: 0.7;
+}
+
+.blue-left {
+  stop-color: blue;
+  stop-opacity: 0.4;
+}
+
+.blue-right {
+  stop-color: blue;
+  stop-opacity: 0.7;
+}
+
 .region.red {
-  fill: red;
+  fill: url(#redGradient);
 }
 
 .region.green {
-  fill: green;
+  fill: url(#greenGradient);
 }
 
 .region.blue {
-  fill: blue;
+  fill: url(#blueGradient);
+}
+
+.highlight-left {
+  stop-color: chartreuse;
+  stop-opacity: 0.4;
+}
+
+.highlight-right {
+  stop-color: chartreuse;
+  stop-opacity: 0.7;
 }
 
 .region.highlight {
   stroke: rgb(235, 195, 14);
   stroke-width: 4;
-  fill: chartreuse;
+  fill: url(#highlightGradient);
 }
 
 /* .region:hover {
@@ -179,12 +230,12 @@
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
-  border: 1px solid grey;
+  box-shadow: 1px 1px 3px black;
 }
 
 .usa {
   background-image: url('/img/usa.png');
-  height: 20%;
+  height: 21.7%;
 }
 
 .china {
@@ -268,17 +319,17 @@
 }
 
 .stop-left {
-  stop-color: blue;
+  stop-color: white;
   stop-opacity: 0.5;
 }
 
 .stop-center {
-  stop-color: blue;
+  stop-color: #aaf;
   stop-opacity: 0.5;
 }
 
 .stop-right {
-  stop-color: blue;
+  stop-color: #faa;
   stop-opacity: 0.5;
 }
 
